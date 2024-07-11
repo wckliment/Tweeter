@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block main %}
+<h3>Tweeter Feed</h3>
+<div class="feed_container">
+    {% for tweet in tweets %}
+    <div class="tweet">
+        <p>{{ tweet.author }} tweeted on {{ tweet.date }} ...</p>
+        <p>"{{ tweet.tweet }}"</p>
+        <p>Likes: <span style="color: {{ 'orange' if tweet.likes > 525000 else 'white' }};">{{ tweet.likes / 1000
+                }}k</span></p>
+        <p>
+            <a href="{{ url_for('like_tweet', tweet_id=tweet.id) }}">Like</a> |
+            <a href="{{ url_for('unlike_tweet', tweet_id=tweet.id) }}">Unlike</a>
+        </p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+
+
